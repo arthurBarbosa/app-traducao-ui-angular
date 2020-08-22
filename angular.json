@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "app-traducao"
+    }
+  },
+  "defaultProject": "app-traducao",
+  "cli": {
+    "analytics": false
+  }
 }
