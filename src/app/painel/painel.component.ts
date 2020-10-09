@@ -11,13 +11,15 @@ export class PainelComponent implements OnInit {
 
   public frases: Frase[] = FRASES;
   public instrucao: string = 'Traduza a frase.';
-  public resposta: string;
+  public resposta: string = '';
 
   public rodada: number = 0;
   public rodadeFrase: Frase;
 
+  public progresso: number = 0
+
   constructor() {
-    this.rodadeFrase = this.frases[this.rodada];
+    this.atualizaRodada();
     console.log(this.rodadeFrase)
   }
 
@@ -32,17 +34,27 @@ export class PainelComponent implements OnInit {
   public verificaResposta(): void {
 
     if (this.rodadeFrase.frasePort == this.resposta) {
+      alert('Resposta correta')
+
       // trocar a pergunta da rodada
       this.rodada++;
 
-      // atualiza o objeto da rodade
-      this.rodadeFrase = this.frases[this.rodada]
-      alert('Resposta correta')
+      // progresso
+      this.progresso = this.progresso + (100 / this.frases.length)
+      console.log(this.progresso)
 
+      // atualiza o objeto da rodade
+     this.atualizaRodada();
+    
     } else {
       alert('Resposta incorreta.')
     }
 
+  }
+
+  public atualizaRodada(): void {
+    this.rodadeFrase = this.frases[this.rodada];
+    this.resposta = '';
   }
 
 
